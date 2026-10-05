@@ -1,0 +1,32 @@
+# el dataset no viaja en el repositorio: vive en Hugging Face, privado.
+# El paso 1 de la hoja de ejecucion lo baja aqui mismo.
+dataset/
+dataset_kan/
+
+# salidas de corridas: nunca entran al repositorio
+resultados/
+checkpoints/
+campana_*/
+corrida_*/
+logs/
+*.tar.gz
+*.tar.zst
+
+# archivos que escribe FitSNAP junto al codigo
+*.dat
+*_metrics.dat
+system_metrics.csv
+FitTorch_Pytorch.pt
+*.snapcoeff
+*.snapparam
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.bak
+*.bak_*
+
+# entorno
+.conda/
+miniforge3/

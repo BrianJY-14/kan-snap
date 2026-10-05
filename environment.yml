@@ -1,0 +1,19 @@
+name: fitsnap
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - lammps          # debe traer el paquete ML-SNAP: sin el no hay descriptores
+  - fitsnap3
+  - pytorch-gpu
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - mpi4py
+  - openmpi
+  - huggingface_hub   # para bajar el dataset en el paso 1
+  - zstd
+  - jupyterlab
+  - ipykernel

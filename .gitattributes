@@ -1,0 +1,16 @@
+# Finales de linea LF en todo, se clone donde se clone. Sin esto, un clon en
+# Windows puede convertir a CRLF y cambiar el hash de las 23 883 configuraciones.
+* text=auto eol=lf
+
+# Binarios: que git no los toque
+*.pt binary
+*.png binary
+*.pdf binary
+*.zst binary
+*.gz binary
+
+# El notebook cuenta como texto, pero su diff no sirve de nada
+*.ipynb -diff
+
+# Para que GitHub no clasifique el repositorio como "JSON"
+dataset/** linguist-generated
