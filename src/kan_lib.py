@@ -499,8 +499,14 @@ CONDICIONES = [
     ("4_kan_bspline",   "num_desc 256 128 64 64 1",      "bspline",   dict(G=5, k=3)),
     ("5_kan_cheby",     "num_desc 256 128 64 64 1",      "chebyshev", dict(grado=5)),
     ("6_kan_compacto",  "num_desc 64 1",                 "gaussiana", dict(K=8)),
-    ("7_kan_iso",       "num_desc 256 128 64 58 1",      "gaussiana", dict(K=8)),
-    ("8_mlp_ampliado",  "num_desc 256 128 64 71 1",      "linear",    {}),
+    # Redimensionadas el 6 de octubre de 2026, con el residuo activado.
+    # El termino residual anade n_in x n_out = 64 parametros por capa KAN,
+    # asi que el ancho que igualaba capacidades sin el ya no la iguala.
+    #   7_kan_iso      58 -> 57 : 352 307 contra 352 313 del MLP base  (-6)
+    #   8_mlp_ampliado 71 -> 72 : 352 841 contra 352 825 del KAN       (+16)
+    # Con el residuo puesto y los anchos viejos el desajuste era +68 y -50.
+    ("7_kan_iso",       "num_desc 256 128 64 57 1",      "gaussiana", dict(K=8)),
+    ("8_mlp_ampliado",  "num_desc 256 128 64 72 1",      "linear",    {}),
 ]
 
 # ======================================================================

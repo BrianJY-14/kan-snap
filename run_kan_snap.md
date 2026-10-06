@@ -65,6 +65,8 @@ and the eight conditions. **Do not queue a node until all four pass.**
 
 ```bash
 export KAN_FRACCION=1.0
+export KAN_RESIDUO=1          # the residual activation; off by default
+export KAN_REJILLA_CADA=200   # grid refresh, in optimizer steps
 python lanzar.py --raiz "$KAN_RAIZ" --grupo todos --semillas 1111 --epocas 3 --si
 python mae.py "$KAN_RAIZ/corrida_*"
 ```
@@ -101,6 +103,8 @@ atom, the force MAE, and `razon_f`, the ratio against predicting zero force:
 cd "$KAN_RAIZ"
 export EPOCHS=106                       # from Step 3
 export KAN_FRACCION=1.0
+export KAN_RESIDUO=1
+export KAN_REJILLA_CADA=200
 export CONDA_BASE=$(conda info --base)
 cat > enviar_kan.sbatch <<'EOF'
 #!/bin/bash
@@ -135,13 +139,20 @@ EOF
 sbatch enviar_kan.sbatch
 ```
 
-`KAN_RAIZ`, `EPOCHS`, `KAN_FRACCION` and `CONDA_BASE` travel to the job through
-the default `--export=ALL`. Forty tasks: **eight output-block conditions × five seeds**, one independent
+`KAN_RAIZ`, `EPOCHS`, `KAN_FRACCION`, `KAN_RESIDUO`, `KAN_REJILLA_CADA` and
+`CONDA_BASE` travel to the job through the default `--export=ALL`. **The two KAN
+variables are off by default and the campaign is meaningless without them**: they
+switch on the residual activation and the on-the-fly grid update that Liu et al.
+(2024) declare necessary for a KAN to train. `resumen_kan()`, printed at the top
+of every task, must say `residuo=si`. Forty tasks: **eight output-block conditions × five seeds**, one independent
 process each, so a failed task takes nothing else with it and can be resubmitted
 alone. The conditions are two MLP baselines, three KAN bases (Gaussian,
 B-spline, Chebyshev), a compact pair and two parameter-matched controls — the
 KAN block is 0.127 % of the parameters, so the controls are what make a
-difference attributable to the architecture rather than to capacity.
+difference attributable to the architecture rather than to capacity. Those two
+controls are sized for `KAN_RESIDUO=1` and are wrong without it: the residual
+adds 64 parameters to the KAN layer, which is why `7_kan_iso` is 57 wide and
+`8_mlp_ampliado` is 72. Both land within 16 parameters of their target.
 
 Lines marked `ADJUST` are the account, the partition and whatever loads CUDA.
 Expect **~13 h of GPU per task** on an RTX 3090, extrapolated from 1.37 s per
