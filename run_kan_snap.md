@@ -9,8 +9,8 @@ output-block variants at equal capacity, learning rate and optimizer budget.
 - **SLURM** with a GPU partition: **1 NVIDIA GPU (≥ 8 GB VRAM) and 8 CPU cores** per array task
 - **conda / mamba** — Step 1 installs Miniforge if none is on `PATH`
 - **~20 GB free disk** on `$SCRATCH` and **internet during Step 1 only**
-- A **Hugging Face read token** with access to the dataset, which is private.
-  Ask for one; the transfer is a single 70 MB file
+- The **read token** sent with this sheet. The dataset is private; the token is
+  all that is needed — no account, no sign-up. A single 70 MB transfer
 
 ## Step 1 — Setup
 
@@ -21,7 +21,7 @@ cd kan-snap
 export KAN_RAIZ=$PWD
 mamba env create -f environment.yml
 conda activate fitsnap
-hf auth login                                   # paste the read token
+export HF_TOKEN=hf_...                          # the token sent with this sheet
 bash scripts/bajar_dataset.sh BrianJY-14/lif-snap-dataset
 ```
 

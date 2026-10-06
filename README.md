@@ -39,8 +39,9 @@ steps, and a troubleshooting table.
 
 The training data is **not in this repository**. It is a private Hugging Face
 dataset, and `scripts/bajar_dataset.sh` pulls it into `dataset/` as the first
-thing anyone does after cloning. Access is granted per person: ask for a read
-token before running the script, and expect `hf auth login` to be needed once.
+thing anyone does after cloning. Ask for the read token and put it in the
+environment — `export HF_TOKEN=hf_...` — before running the script. No Hugging
+Face account is needed to use it.
 
 A sample would not have helped. The comparison this repository exists to make
 is between architectures at a fixed optimizer budget, and a subset changes the

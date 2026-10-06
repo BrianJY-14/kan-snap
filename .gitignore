@@ -30,3 +30,4 @@ __pycache__/
 # entorno
 .conda/
 miniforge3/
+subir_repositorio.sh

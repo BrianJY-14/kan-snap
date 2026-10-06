@@ -5,10 +5,10 @@
 #
 #  Uso:   bash scripts/bajar_dataset.sh <usuario-hf>/<nombre-del-dataset>
 #
-#  El dataset es PRIVADO. Hace falta un token de lectura con acceso concedido:
-#      hf auth login          # pega el token cuando lo pida
-#  o bien, sin sesion interactiva:
+#  El dataset es PRIVADO. Hace falta el token de lectura que acompana a la
+#  hoja de ejecucion. No hace falta cuenta de Hugging Face:
 #      export HF_TOKEN=hf_...
+#  Con cuenta propia y acceso concedido, 'hf auth login' tambien sirve.
 #
 #  Son ~70 MB comprimidos y ~225 MB expandidos. Una sola transferencia.
 # =============================================================================
