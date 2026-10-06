@@ -9,8 +9,8 @@ output-block variants at equal capacity, learning rate and optimizer budget.
 - **SLURM** with a GPU partition: **1 NVIDIA GPU (≥ 8 GB VRAM) and 8 CPU cores** per array task
 - **conda / mamba** — Step 1 installs Miniforge if none is on `PATH`
 - **~20 GB free disk** on `$SCRATCH` and **internet during Step 1 only**
-- The **read token** sent with this sheet. The dataset is private; the token is
-  all that is needed — no account, no sign-up. A single 70 MB transfer
+- A **read token** for the dataset, which is private. Ask for one; no Hugging
+  Face account is needed to use it. A single 70 MB transfer
 
 ## Step 1 — Setup
 
